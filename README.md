@@ -1,6 +1,6 @@
 # Practice Challenge: CAR LOT
 
-Welcome to Flatiron Car Lot.
+Welcome to our Car Lot.
 
 This practice will help you prepare for the code challenge. You will need to put together
 a lot of previous learning to get through this one.
