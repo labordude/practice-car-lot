@@ -252,7 +252,12 @@ function Car({car, onEditCarFormSubmit, onMarkCarAsSold}) {
 
           <div className="row">
             <input type="submit" id="submit-btn" value="SAVE" />
-            <input type="button" id="cancel-btn" value="CANCEL" />
+            <input
+              type="button"
+              id="cancel-btn"
+              value="CANCEL"
+              onClick={toggleForm}
+            />
           </div>
         </form>
       )}
