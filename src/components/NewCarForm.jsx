@@ -31,7 +31,7 @@ function NewCarForm({onNewCarFormSubmit}) {
       .then(response => response.json())
       .then(newCar => {
         onNewCarFormSubmit(newCar);
-        setShowForm(prevShowForm => !showForm);
+        setShowForm(prevShowForm => !prevShowForm);
         setNewCarFormData({
           car_model_year: "",
           car_make: "",
@@ -45,7 +45,7 @@ function NewCarForm({onNewCarFormSubmit}) {
       });
   }
   function toggleForm() {
-    setShowForm(prevShowForm => !showForm);
+    setShowForm(prevShowForm => !prevShowForm);
   }
 
   return (

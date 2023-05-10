@@ -32,7 +32,7 @@ function Car({car, onEditCarFormSubmit, onMarkCarAsSold}) {
     setFormData({...formData, [name]: value});
   }
   function toggleForm() {
-    setShowForm(prevShowForm => !showForm);
+    setShowForm(prevShowForm => !prevShowForm);
   }
   function handleEditCarFormSubmit(event) {
     event.preventDefault();
@@ -46,7 +46,7 @@ function Car({car, onEditCarFormSubmit, onMarkCarAsSold}) {
       .then(response => response.json())
       .then(updatedCar => {
         onEditCarFormSubmit(updatedCar);
-        setShowForm(prevShowForm => !showForm);
+        setShowForm(prevShowForm => !prevShowForm);
       });
   }
   function handleMarkCarAsSold(event) {
