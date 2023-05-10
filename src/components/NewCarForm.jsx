@@ -1,8 +1,49 @@
 import React, {useState} from "react";
 
-function NewCarForm() {
+function NewCarForm({onNewCarFormSubmit}) {
   const [showForm, setShowForm] = useState(false);
+  const [newCarFormData, setNewCarFormData] = useState({
+    car_model_year: "",
+    car_make: "",
+    car_model: "",
+    price: "",
+    condition: "",
+    mileage: "",
+    color: "",
+    image: "",
+  });
+  function handleChange(event) {
+    const name = event.target.name;
+    let value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
 
+    setNewCarFormData({...newCarFormData, [name]: value});
+  }
+  function handleNewCarSubmit(event) {
+    event.preventDefault();
+    fetch(`http://localhost:3001/cars`, {
+      method: "POST",
+      body: JSON.stringify(newCarFormData),
+      headers: {"content-type": "application/json"},
+    })
+      .then(response => response.json())
+      .then(newCar => {
+        onNewCarFormSubmit(newCar);
+        setShowForm(prevShowForm => !showForm);
+        setNewCarFormData({
+          car_model_year: "",
+          car_make: "",
+          car_model: "",
+          price: "",
+          condition: "",
+          mileage: "",
+          color: "",
+          image: "",
+        });
+      });
+  }
   function toggleForm() {
     setShowForm(prevShowForm => !showForm);
   }
@@ -10,7 +51,7 @@ function NewCarForm() {
   return (
     <div className="new_car_form">
       {showForm ? (
-        <form id="car-form" className="sale-form">
+        <form id="car-form" className="sale-form" onSubmit={handleNewCarSubmit}>
           <div className="row">
             <div className="left">
               <label htmlFor="car_model_year">YEAR</label>
@@ -20,7 +61,9 @@ function NewCarForm() {
                 name="car_model_year"
                 id="year-input"
                 required
-                aria-required="true">
+                aria-required="true"
+                value={newCarFormData.car_model_year}
+                onChange={handleChange}>
                 <option value=""></option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
@@ -52,6 +95,8 @@ function NewCarForm() {
                 required
                 aria-required="true"
                 minLength="2"
+                value={newCarFormData.car_make}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -67,6 +112,8 @@ function NewCarForm() {
                 id="model-form"
                 required
                 aria-required="true"
+                value={newCarFormData.car_model}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -85,6 +132,8 @@ function NewCarForm() {
                 aria-required="true"
                 minLength="3"
                 maxLength="10"
+                value={newCarFormData.price}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -98,7 +147,9 @@ function NewCarForm() {
                 name="condition"
                 id="condition-form"
                 required
-                aria-required="true">
+                aria-required="true"
+                value={newCarFormData.condition}
+                onChange={handleChange}>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
                 <option value="Certified Pre-Owned">Certified Pre-Owned</option>
@@ -118,6 +169,8 @@ function NewCarForm() {
                 required
                 aria-required="true"
                 maxLength="7"
+                value={newCarFormData.mileage}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -134,6 +187,8 @@ function NewCarForm() {
                 required
                 aria-required="true"
                 minLength="3"
+                value={newCarFormData.color}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -143,7 +198,13 @@ function NewCarForm() {
               <label htmlFor="image">IMAGE URL</label>
             </div>
             <div className="right">
-              <input type="text" name="image" id="image_url" />
+              <input
+                type="text"
+                name="image"
+                id="image_url"
+                value={newCarFormData.image}
+                onChange={handleChange}
+              />
             </div>
           </div>
 

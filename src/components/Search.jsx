@@ -1,6 +1,6 @@
 import React from "react";
 
-function Search() {
+function Search({brand, search, onBrandChange, onSearchChange}) {
   return (
     <div className="search">
       <div className="select">
@@ -8,7 +8,9 @@ function Search() {
         <select
           name="model search"
           id="model search"
-          className="border-2 border-solid ml-[10px] border-slate-900">
+          className="border-2 border-solid ml-[10px] border-slate-900"
+          value={brand}
+          onChange={e => onBrandChange(e.target.value)}>
           <option value="">Choose a manufacturer</option>
           <option value="Audi">Audi</option>
           <option value="BMW">BMW</option>
@@ -27,6 +29,8 @@ function Search() {
           id="search"
           placeholder="Type a name to search..."
           className="searchField ml-[10px] border-2 border-solid border-slate-900"
+          value={search}
+          onChange={e => onSearchChange(e.target.value)}
         />
       </div>
     </div>

@@ -10,38 +10,90 @@ import Button from "@mui/material/Button";
 
 import React, {useState} from "react";
 
-function Car() {
+function Car({car, onEditCarFormSubmit, onMarkCarAsSold}) {
   const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    car_model_year: car.car_model_year,
+    car_make: car.car_make,
+    car_model: car.car_model,
+    price: car.price,
+    condition: car.condition,
+    mileage: car.mileage,
+    color: car.color,
+    image: car.image,
+  });
+  function handleChange(event) {
+    const name = event.target.name;
+    let value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
 
+    setFormData({...formData, [name]: value});
+  }
+  function toggleForm() {
+    setShowForm(prevShowForm => !showForm);
+  }
+  function handleEditCarFormSubmit(event) {
+    event.preventDefault();
+    fetch(`http://localhost:3001/cars/${car.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(formData),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then(response => response.json())
+      .then(updatedCar => {
+        onEditCarFormSubmit(updatedCar);
+        setShowForm(prevShowForm => !showForm);
+      });
+  }
+  function handleMarkCarAsSold(event) {
+    event.preventDefault();
+    fetch(`http://localhost:3001/cars/${car.id}`, {
+      method: "DELETE",
+    }).then(() => onMarkCarAsSold(car.id));
+  }
   return (
     <Grid item xs={2} sm={4} md={4}>
       {/**can edit below this */}
       {!showForm ? (
         <Card sx={{maxWidth: 350, height: 600}}>
-          <CardHeader title={`TITLE`} sx={{fontSize: "20px"}} />
+          <CardHeader
+            title={`${car.car_model_year} ${car.car_make} ${car.car_model}`}
+            sx={{fontSize: "20px"}}
+          />
           <CardMedia
             component="img"
             height="250"
-            image="{/**image*/}"
+            image={car.image}
             alt={`YEAR MAKE MODEL`}
           />
           <CardContent>
             <Typography variant="h5" color="text.secondary" align="center">
-              ${/**PRICE */}
+              ${parseFloat(car.price).toFixed(2)}
             </Typography>
           </CardContent>
           <CardContent>
-            <Typography paragraph>Condition: {/** */}</Typography>
-            <Typography paragraph>Mileage: {/** */}</Typography>
-            <Typography paragraph>Color: {/** */}</Typography>
+            <Typography paragraph>Condition: {car.condition}</Typography>
+            <Typography paragraph>Mileage: {car.mileage}</Typography>
+            <Typography paragraph>Color: {car.color}</Typography>
           </CardContent>
           <CardContent className="flex justify-around">
-            <Button variant="contained">Edit</Button>
-            <Button variant="contained">Mark Sold</Button>
+            <Button variant="contained" onClick={toggleForm}>
+              Edit
+            </Button>
+            <Button variant="contained" onClick={handleMarkCarAsSold}>
+              Mark Sold
+            </Button>
           </CardContent>
         </Card>
       ) : (
-        <form id="car-form" className="sale-form">
+        <form
+          id="car-form"
+          className="sale-form"
+          onSubmit={handleEditCarFormSubmit}>
           <div className="row">
             <div className="left">
               <label htmlFor="car_model_year">YEAR</label>
@@ -51,7 +103,9 @@ function Car() {
                 name="car_model_year"
                 id="year-input"
                 required
-                aria-required="true">
+                aria-required="true"
+                value={formData.car_model_year}
+                onChange={handleChange}>
                 <option value=""></option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
@@ -83,6 +137,8 @@ function Car() {
                 required
                 aria-required="true"
                 minLength="2"
+                value={formData.car_make}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -98,6 +154,8 @@ function Car() {
                 id="model-form"
                 required
                 aria-required="true"
+                value={formData.car_model}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -116,6 +174,8 @@ function Car() {
                 aria-required="true"
                 minLength="3"
                 maxLength="10"
+                value={formData.price}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -129,7 +189,9 @@ function Car() {
                 name="condition"
                 id="condition-form"
                 required
-                aria-required="true">
+                aria-required="true"
+                value={formData.condition}
+                onChange={handleChange}>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
                 <option value="Certified Pre-Owned">Certified Pre-Owned</option>
@@ -149,6 +211,8 @@ function Car() {
                 required
                 aria-required="true"
                 maxLength="7"
+                value={formData.mileage}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -165,6 +229,8 @@ function Car() {
                 required
                 aria-required="true"
                 minLength="3"
+                value={formData.color}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -174,7 +240,13 @@ function Car() {
               <label htmlFor="image">IMAGE URL</label>
             </div>
             <div className="right">
-              <input type="text" name="image" id="image_url" />
+              <input
+                type="text"
+                name="image"
+                id="image_url"
+                value={formData.image}
+                onChange={handleChange}
+              />
             </div>
           </div>
 

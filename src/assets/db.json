@@ -7,8 +7,6 @@
       "color": "Black",
       "mileage": "35555",
       "price": "27150.98",
-      "transmission": "Manual",
-      "fuel_type": "Electric",
       "condition": "Certified Pre-Owned",
       "id": 1,
       "image": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ5w-4w-MyMsdCXNh1tcP_gjDYlhp9L19f1CLD-wAunfOtVVN6R"
@@ -20,8 +18,6 @@
       "color": "Gray",
       "mileage": "55500",
       "price": "19000.15",
-      "transmission": "Automatic",
-      "fuel_type": "Gasoline",
       "condition": "New",
       "id": 2,
       "image": "https://images.dealersync.com/cloud/userdocumentprod/2077/Photos/141891/wm_c7effa08c4994ccd9c57edac8747cae9_141891.jpg?_=c61eddf53a07f48992a34c0f7ca376dc8b17c583"
@@ -33,8 +29,6 @@
       "color": "Blue",
       "mileage": "20000",
       "price": "60000",
-      "transmission": "Automatic",
-      "fuel_type": "Diesel",
       "condition": "Certified Pre-Owned",
       "id": 3,
       "image": "https://media.ed.edmunds-media.com/ford/f-250-super-duty/2018/oem/2018_ford_f-250-super-duty_crew-cab-pickup_lariat_fq_oem_1_600.jpg"
@@ -46,8 +40,6 @@
       "color": "Black",
       "mileage": 22988,
       "price": 43999.25,
-      "transmission": "Automatic",
-      "fuel_type": "Gasoline",
       "condition": "Used",
       "id": 4,
       "image": "https://images.autotrader.com/hn/c/2115c0d947e84a76bea44e89d5f84466.jpg"
@@ -59,8 +51,6 @@
       "color": "Red",
       "mileage": "18785",
       "price": "24995",
-      "transmission": "Automatic",
-      "fuel_type": "Hybrid",
       "condition": "Used",
       "id": 5,
       "image": "https://images.autotrader.com/hn/c/1d069bd160a242d8afff887b7b4411fa.jpg"
@@ -72,8 +62,6 @@
       "color": "Silver",
       "mileage": "5804",
       "price": "25000",
-      "transmission": "Automatic",
-      "fuel_type": "Hybrid",
       "condition": "Certified Pre-Owned",
       "id": 6,
       "image": "https://images.autotrader.com/hn/c/f84177f6f11a411d89801d838c5e9695.jpg"
@@ -85,8 +73,6 @@
       "color": "Black",
       "mileage": "75588",
       "price": "38547.04",
-      "transmission": "Automatic",
-      "fuel_type": "Gasoline",
       "condition": "Used",
       "id": 7,
       "image": "https://images.autotrader.com/hn/c/ad1d2b2886e34669866104e4166cd992.jpg"
@@ -98,8 +84,6 @@
       "color": "Blue",
       "mileage": "15",
       "price": "139425",
-      "transmission": "Automatic",
-      "fuel_type": "Gasoline",
       "condition": "New",
       "id": 8,
       "image": "https://images.autotrader.com/hn/c/67b30dddbcc34776a4e8d29f2b60777b.jpg"
@@ -109,7 +93,7 @@
       "car_make": "BMW",
       "car_model": "M340i",
       "condition": "Certified Pre-Owned",
-      "mileage": "47398",
+      "mileage": "50000",
       "price": "41488",
       "image": "https://images.autotrader.com/hn/c/9c2d681a1003464ca91e101378c9f19f.jpg",
       "color": "White",
