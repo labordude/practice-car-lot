@@ -18,11 +18,11 @@ function CarLot() {
   let filteredCars = cars;
 
   if (brand !== "" || search !== "") {
-    filteredCars = [...cars].filter(
-      car =>
-        (car.car_make === brand || brand === "") &&
+    filteredCars = [...cars]
+      .filter(car => car.car_make === brand || brand === "")
+      .filter(car =>
         car.car_model.toLowerCase().includes(search.toLowerCase()),
-    );
+      );
   }
 
   function onBrandChange(newBrand) {
@@ -65,7 +65,11 @@ function CarLot() {
         </Grid>
         <Grid item xs={12}>
           {/** enter your code below */}
-          <Cars cars={filteredCars} onEditCarFormSubmit={onEditCarFormSubmit} onMarkCarAsSold={onMarkCarAsSold} />
+          <Cars
+            cars={filteredCars}
+            onEditCarFormSubmit={onEditCarFormSubmit}
+            onMarkCarAsSold={onMarkCarAsSold}
+          />
           {/** enter your code above */}
         </Grid>
       </Grid>
